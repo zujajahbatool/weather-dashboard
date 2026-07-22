@@ -11,8 +11,8 @@ export default function App() {
           <div className="name-of-person">Hi, Zujajah</div>
           <div className="app-greeting">Good Morning</div>
         </div>
-        <Header />
         {/* rest of the dashboard goes here */}
+        <Header />
       </main>
     </div>
   );
