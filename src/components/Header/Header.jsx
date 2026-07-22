@@ -1,11 +1,14 @@
 import "./Header.css";
+import searchIcon from "../../assets/icons/flowbite_search-outline.png";
+import lightThemeIcon from "../../assets/icons/light_theme.png";
+import darkThemeIcon from "../../assets/icons/dark_theme.png";
 
 export default function Header() {
   return (
     <div className="header-bar">
       <div className="search-pill">
         <img
-          src="src\assets\icons\flowbite_search-outline.png"
+          src={searchIcon}
           alt="search-icon"
           id="search-icon"
         />
@@ -18,13 +21,13 @@ export default function Header() {
 
       <button className="theme-toggle" type="button">
         <img
-          src="src\assets\icons\light_theme.png"
+          src={lightThemeIcon}
           alt="light-theme icon"
           id="light-theme"
         />
         <div className="ellipse">
           <img
-          src="src\assets\icons\dark_theme.png"
+          src={darkThemeIcon}
           alt="dark-theme icon"
           id="dark-theme"
         />
