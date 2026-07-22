@@ -1,10 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg-card: #1E1E1E;         /* black-800 */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B9B9B9;  /* black-100 */
+  --colro-text-displaycard: #272727;
+  --color-text-placeholder: #5E5E5E;/* black-400 */
+  --color-text-status: #363636;
+
+  --font-main: 'Inter', sans-serif;
+  --fs-location: 18px;        /*weight 400 - "Dhaka, Bangladesh" */
+  --fs-day-name: 36px;       /* weight 500 — "Sunday" */
+  --fs-date: 16px;           /* weight 400 — "04 Aug,2024" */
+  --fs-condition: 20px;      /* weight 500 — "Heavy Rain" */
+  --fs-feelslike: 16px;      /* weight 400 - "Feels like 31"*/
+  --fs-temp-secondary: 24px; /* weight 500 — "/24°C" */
+  --fs-todays-highlight: 24px; /* weight 600 - "Today’s Highlight" */
+  --fs-country-name: 14px;   /* weight 400 — "Australia" */
+  --fs-forecast-day: 14px;   /* weight 500 — "Today", "Mon"... */
+  --fs-forecast-temp: 18px;  /* weight 500 — "28°C" in forecast cards */
+  --fs-search-input: 18px;   /* weight 400 — placeholder text */
+
+  --radius-card: 36px;
+}
+
 body{
-  background-image: url("assets/rainy_background.jpg");
+  body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url("./assets/images/rainy_background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1440;
-  height: 900;
-  angle: 0 deg;
-  opacity: 1;
-
+}
 }
