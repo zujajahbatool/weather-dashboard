@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   --color-bg-card: #1E1E1E;         /* black-800 */
   --color-text-primary: #FFFFFF;

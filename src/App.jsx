@@ -8,11 +8,13 @@ export default function App() {
       <Sidebar />
       <main className="app-main">
         <div className="app-topbar">
-          <div className="name-of-person">Hi, Zujajah</div>
-          <div className="app-greeting">Good Morning</div>
+          <div className="app-greeting-block">
+            <div className="name-of-person">Hi, Zujajah</div>
+            <div className="app-greeting">Good Morning</div>
+          </div>
+          <Header />
         </div>
-        {/* rest of the dashboard goes here */}
-        <Header />
+        {/*rest of dashboard goes here*/}
       </main>
     </div>
   );
