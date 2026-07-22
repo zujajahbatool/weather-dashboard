@@ -25,13 +25,11 @@ export default function Header() {
           alt="light-theme icon"
           id="light-theme"
         />
-        <div className="ellipse">
-          <img
-          src={darkThemeIcon}
-          alt="dark-theme icon"
-          id="dark-theme"
+        <img
+        src={darkThemeIcon}
+        alt="dark-theme icon"
+        id="dark-theme"
         />
-        </div>
       </button>
     </div>
   );
