@@ -11,7 +11,7 @@ function Sidebar() {
       <button className="sidebar-icon sidebar-menu" aria-label="Menu">
         <img src={menuIcon} alt="hamburger icon" />
       </button>
-
+      <br />
       <div className="sidebar-nav">
         <button className="sidebar-icon sidebar-icon--active" aria-label="Dashboard">
           <img src={dashboardIcon} alt="dashboard icon" />
@@ -23,7 +23,7 @@ function Sidebar() {
           <img src={settingsIcon} alt="settings icon" />
         </button>
       </div>
-
+      <br />
       <button className="sidebar-icon sidebar-icon--bottom" aria-label="Help">
         <img src={helpIcon} alt="find help icon" />
       </button>
