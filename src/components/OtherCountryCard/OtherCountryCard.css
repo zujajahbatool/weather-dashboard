@@ -1,0 +1,92 @@
+.occ-card {
+  width: 508px;
+  max-width: 100%;
+  height: 127px;
+  border-radius: 24px;
+  padding: 24px;
+  background: var(--color-text-displaycard, #272727);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.occ-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.occ-country {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: var(--fs-country-name);
+  line-height: 100%;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.occ-city {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size:  var(--fs-city-name);
+  line-height: 100%;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.occ-desc {
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: var(--fs-weather-desc);
+  line-height: 100%;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.occ-icon-wrap {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.occ-icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.occ-temp {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: var(--fs-country-temp);
+  line-height: 100%;
+  text-align: center;
+  color: var(--color-text-primary, #fff);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.occ-temp__sub {
+  font-weight: 400;
+  font-size: var(--fs-country-temp-sub);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .occ-card {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .occ-temp {
+    margin-left: auto;
+  }
+}

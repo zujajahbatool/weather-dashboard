@@ -25,7 +25,12 @@
   --fs-forecast-day: 14px;   /* weight 500 — "Today", "Mon"... */
   --fs-forecast-temp: 18px;  /* weight 500 — "28°C" in forecast cards */
   --fs-search-input: 18px;   /* weight 400 — placeholder text */
-
+  --fs-others-title: 24px;    /* weight 600 — "Others Countries" */
+  --fs-see-all: 16px;         /* weight 600 — "See all" */
+  --fs-city-name: 24px;       /* weight 400 — "Canberra", "Tokyo" */
+  --fs-weather-desc: 14px;    /* weight 500 — "Sunny", "Mostly Sunny" */
+  --fs-country-temp: 24px;    /* weight 600 — "32°" */
+  --fs-country-temp-sub: 18px;/* weight 400 — "/24°" */
   --radius-card: 36px;
 }
 

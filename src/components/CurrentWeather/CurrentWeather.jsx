@@ -1,6 +1,6 @@
 import locationIcon from "../../assets/icons/location_icon.png";
 import arrowdownIcon from "../../assets/icons/arrowdown_icon.png";
-import weatherIcon from "../../assets/icons/weather_icon.png";
+import rainyIcon from "../../assets/icons/rainy_icon.png";
 import "./CurrentWeather.css";
 
 export default function CurrentWeather() {
@@ -32,7 +32,7 @@ export default function CurrentWeather() {
         <div className="cw-main">
           <div className="cw-main__icon-wrap">
             <img
-              src={weatherIcon}
+              src={rainyIcon}
               alt="weather icon"
               className="cw-main__icon"
             />
