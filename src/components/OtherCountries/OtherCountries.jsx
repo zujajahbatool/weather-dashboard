@@ -1,7 +1,7 @@
 import OtherCountryCard from "../OtherCountryCard/OtherCountryCard";
 import arrowDown from "../../assets/icons/arrowdown_icon.png";
-import sunnyIcon from "./assets/icons/sunny_icon.png";
-import partlysunnyIcon from "./assets/icons/partlysunny_icon.png";
+import sunnyIcon from "../../assets/icons/sunny_icon.png";
+import partlysunnyIcon from "../../assets/icons/partlysunny_icon.png";
 import "./OtherCountries.css";
 
 const countries = [
