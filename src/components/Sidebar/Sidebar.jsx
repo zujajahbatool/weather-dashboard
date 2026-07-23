@@ -5,13 +5,16 @@ import notificationIcon from "../../assets/icons/notification_line.png";
 import settingsIcon from "../../assets/icons/setting.png";
 import helpIcon from "../../assets/icons/help.png";
 
-function Sidebar() {
+export default function Sidebar() {
   return (
     <nav className="sidebar">
-      <button className="sidebar-icon sidebar-menu" aria-label="Menu">
-        <img src={menuIcon} alt="hamburger icon" />
-      </button>
-      <br />
+      <div className="sidebar-top">
+        <button className="sidebar-icon sidebar-menu" aria-label="Menu">
+          <img src={menuIcon} alt="hamburger icon" />
+        </button>
+        <div className="sidebar-divider sidebar-divider--top"></div>
+      </div>
+
       <div className="sidebar-nav">
         <button className="sidebar-icon sidebar-icon--active" aria-label="Dashboard">
           <img src={dashboardIcon} alt="dashboard icon" />
@@ -22,13 +25,12 @@ function Sidebar() {
         <button className="sidebar-icon" aria-label="Settings">
           <img src={settingsIcon} alt="settings icon" />
         </button>
+        <div className="sidebar-divider sidebar-divider--bottom"></div>
       </div>
-      <br />
+
       <button className="sidebar-icon sidebar-icon--bottom" aria-label="Help">
         <img src={helpIcon} alt="find help icon" />
       </button>
     </nav>
   );
 }
-
-export default Sidebar;

@@ -1,6 +1,7 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Header from "./components/Header/Header.jsx";
+import CurrentWeather from "./components/CurrentWeather/CurrentWeather.jsx"
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           </div>
           <Header />
         </div>
+        <CurrentWeather/>
         {/*rest of dashboard goes here*/}
       </main>
     </div>
