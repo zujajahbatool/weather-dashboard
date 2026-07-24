@@ -31,6 +31,9 @@
   --fs-weather-desc: 14px;    /* weight 500 — "Sunny", "Mostly Sunny" */
   --fs-country-temp: 24px;    /* weight 600 — "32°" */
   --fs-country-temp-sub: 18px;/* weight 400 — "/24°" */
+  --fs-highlight-label: 16px;  /* weight 500 — "Wind Status","Humidity","UV Index","Visibility","Sunrise","Sunset" */
+  --fs-highlight-unit: 14px;   /* weight 600 — unit spans e.g. "km/h", "%", "UV", "km" */
+  --fs-highlight-detail: 14px; /* weight 400 — "9:00 AM", "Humidity is good", "Moderate UV" */
   --radius-card: 36px;
 }
 

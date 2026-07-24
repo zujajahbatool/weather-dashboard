@@ -1,0 +1,31 @@
+.th-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(30, 30, 30, 0.75); /* same RGB as --color-bg-card, with the Figma-specified 0.75 opacity */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.th-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: var(--fs-todays-highlight);
+  line-height: 100%;
+}
+
+.th-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.th-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}

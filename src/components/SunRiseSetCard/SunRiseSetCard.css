@@ -1,0 +1,40 @@
+.srs-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 35px 16px;
+  border-radius: 24px;
+  background: var(--color-text-displaycard);
+  flex: 1 1 220px;
+  min-width: 220px;
+}
+
+.srs-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.srs-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.srs-label {
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: var(--fs-highlight-label);
+  line-height: 100%;
+}
+
+.srs-time {
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: var(--fs-country-temp);
+  line-height: 100%;
+}

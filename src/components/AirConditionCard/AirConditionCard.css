@@ -1,0 +1,56 @@
+.ac-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--color-text-displaycard);
+  flex: 1 1 140px;
+  min-width: 140px;
+}
+
+.ac-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ac-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.ac-label {
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: var(--fs-highlight-label);
+  line-height: 100%;
+  white-space: nowrap;
+}
+
+.ac-value {
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: var(--fs-country-temp);
+  line-height: 100%;
+}
+
+.ac-unit {
+  font-weight: 600;
+  font-size: var(--fs-highlight-unit);
+  margin-left: 2px;
+}
+
+.ac-detail {
+  color: var(--color-text-primary);
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: var(--fs-highlight-detail);
+  line-height: 100%;
+  white-space: nowrap;
+}
