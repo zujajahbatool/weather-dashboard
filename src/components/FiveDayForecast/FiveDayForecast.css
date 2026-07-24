@@ -1,0 +1,23 @@
+.fdf-card {
+  width: 664px;
+  height: 321px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  background: rgba(30, 30, 30, 0.75);
+  padding: 24px;
+}
+
+.fdf-title {
+  margin: 0 0 24px 0;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: var(--fs-others-title); /* reuse if it's 24px/600; else add --fs-forecast-title */
+  line-height: 100%;
+  color: var(--color-text-primary);
+}
+
+.fdf-row {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}

@@ -3,7 +3,7 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Header from "./components/Header/Header.jsx";
 import CurrentWeather from "./components/CurrentWeather/CurrentWeather.jsx";
 import OtherCountries from "./components/OtherCountries/OtherCountries.jsx";
-import TodaysHighlight from "./components/TodaysHighlight/TodaysHighlight.jsx";
+import TodaysHighlight from "./components/TodaysHighlight/TodaysHighlight.jsx";import FiveDayForecast from './components/FiveDayForecast/FiveDayForecast';
 
 export default function App() {
   return (
@@ -25,6 +25,7 @@ export default function App() {
           <div className="dashboard-col dashboard-col--right">
             {/* Today's Highlight + 5 Day Forecast go here next */}
             <TodaysHighlight />
+             <FiveDayForecast/>
           </div>
         </div>
       </main>
