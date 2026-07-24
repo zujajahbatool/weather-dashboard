@@ -78,3 +78,18 @@
   width: auto;
   height: 56px;
 }
+
+.app-topbar {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.search-pill {
+  width: 333px;
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .search-pill { width: 100%; }
+  .theme-toggle { margin-left: 0; }
+}

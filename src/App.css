@@ -44,7 +44,6 @@
 .dashboard-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
   flex: 1;
 }
 
@@ -54,4 +53,8 @@
   gap: 24px;
   flex: 1;
   min-width: 300px;
+}
+
+@media (max-width: 480px) {
+  .app { padding: 16px; gap: 16px; }
 }

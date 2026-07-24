@@ -22,7 +22,7 @@
 .dfc-day {
   font-family: var(--font-main);
   font-weight: 500;
-  font-size: var(--fs-day-name); 
+  font-size: var(--fs-forecast-day); 
   line-height: 100%;
   text-align: center;
   color: var(--color-text-primary);
