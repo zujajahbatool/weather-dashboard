@@ -52,38 +52,43 @@
   color: var(--color-text-placeholder);
 }
 
-.theme-toggle {
-  position: relative;
+.search-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 0;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  position: relative;
   border: none;
   cursor: pointer;
   box-sizing: border-box;
   width: 104px;
   height: 56px;
   border-radius: 34px;
-  padding-left: 16px;
-  gap: 8px;
   margin-left: 10px;
   background-color: #1e1e1e;
   flex-shrink: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .theme-icon--light {
+  position: absolute;
   width: 24px;
   height: 24px;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-/* the static track the knob rests on (group2) */
-.theme-track {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: rgba(38, 38, 38, 1);
-  flex-shrink: 0;
-  position: relative;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
 /* the sliding knob (ellipse2) — note: 4 Figma box-shadow rows merged into one */
@@ -100,25 +105,41 @@
     -4px 0px 4px 0px rgba(0, 0, 0, 0.25) inset,
     1px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
     -4px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1;
   transition: transform 0.25s ease;
 }
 
 .theme-icon--dark {
   position: absolute;
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
   top: 16px;
-  left: 16px;
+  left: 64px;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
-/* default = dark theme active = thumb rests on track (no shift) */
-.theme-toggle[data-theme="dark"] .theme-thumb {
+/* default = light theme active = thumb is on the left */
+.theme-toggle[data-theme="light"] .theme-thumb {
   transform: translateX(0);
 }
+.theme-toggle[data-theme="light"] .theme-icon--light {
+  opacity: 1;
+}
+.theme-toggle[data-theme="light"] .theme-icon--dark {
+  opacity: 0.4;
+}
 
-/* light theme active = thumb slides left over the light icon */
-.theme-toggle[data-theme="light"] .theme-thumb {
-  transform: translateX(-50px);
+/* dark theme active = thumb is on the right */
+.theme-toggle[data-theme="dark"] .theme-thumb {
+  transform: translateX(48px);
+}
+.theme-toggle[data-theme="dark"] .theme-icon--light {
+  opacity: 0.4;
+}
+.theme-toggle[data-theme="dark"] .theme-icon--dark {
+  opacity: 1;
 }
 
 .app-topbar {
