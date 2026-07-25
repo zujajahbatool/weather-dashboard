@@ -9,30 +9,76 @@ import visibilityIcon from "../../assets/icons/visibility.png";
 import sunriseIcon from "../../assets/icons/sunrise.png";
 import sunsetIcon from "../../assets/icons/sunset.png";
 
-const airConditions = [
-  { id: "wind", icon: windIcon, iconAlt: "Wind status icon", label: "Wind Status", value: "7.90", unit: "km/h", detail: "9:00 AM" },
-  { id: "humidity", icon: humidityIcon, iconAlt: "Humidity icon", label: "Humidity", value: "85", unit: "%", detail: "Humidity is good" },
-  { id: "uv", icon: uvIcon, iconAlt: "UV index icon", label: "UV Index", value: "4", unit: "UV", detail: "Moderate UV" },
-  { id: "visibility", icon: visibilityIcon, iconAlt: "Visibility icon", label: "Visibility", value: "5", unit: "km", detail: "9:00 AM" },
-];
+export default function TodaysHighlight({ highlights }) {
+  if (!highlights) return null;
 
-const sunTimes = [
-  { id: "sunrise", icon: sunriseIcon, iconAlt: "Sunrise icon", label: "Sunrise", time: "4:50 AM" },
-  { id: "sunset", icon: sunsetIcon, iconAlt: "Sunset icon", label: "Sunset", time: "6:45 PM" },
-];
+  const windCard = {
+    id: "wind",
+    icon: windIcon,
+    iconAlt: "Wind status icon",
+    label: "Wind Status",
+    value: highlights.windSpeed.toFixed(2),
+    unit: "km/h",
+    detail: highlights.currentTime,
+  };
 
-export default function TodaysHighlight() {
+  const humidityCard = {
+    id: "humidity",
+    icon: humidityIcon,
+    iconAlt: "Humidity icon",
+    label: "Humidity",
+    value: String(highlights.humidity),
+    unit: "%",
+    detail: highlights.humidityDesc,
+  };
+
+  const uvCard = {
+    id: "uv",
+    icon: uvIcon,
+    iconAlt: "UV index icon",
+    label: "UV Index",
+    value: String(Math.round(highlights.uvIndex)),
+    unit: "UV",
+    detail: highlights.uvDesc,
+  };
+
+  const visibilityCard = {
+    id: "visibility",
+    icon: visibilityIcon,
+    iconAlt: "Visibility icon",
+    label: "Visibility",
+    value: String(highlights.visibility),
+    unit: "km",
+    detail: highlights.currentTime,
+  };
+
+  const sunriseCard = {
+    id: "sunrise",
+    icon: sunriseIcon,
+    iconAlt: "Sunrise icon",
+    label: "Sunrise",
+    time: highlights.sunrise,
+  };
+
+  const sunsetCard = {
+    id: "sunset",
+    icon: sunsetIcon,
+    iconAlt: "Sunset icon",
+    label: "Sunset",
+    time: highlights.sunset,
+  };
+
   return (
     <div className="th-card">
       <h2 className="th-title">Today's Highlight</h2>
       <div className="th-grid">
-        <AirConditionCard {...airConditions[0]} />
-        <AirConditionCard {...airConditions[1]} />
-        <SunRiseSetCard {...sunTimes[0]} />
-        <AirConditionCard {...airConditions[2]} />
-        <AirConditionCard {...airConditions[3]} />
-        <SunRiseSetCard {...sunTimes[1]} />
+        <AirConditionCard {...windCard} />
+        <AirConditionCard {...humidityCard} />
+        <SunRiseSetCard {...sunriseCard} />
+        <AirConditionCard {...uvCard} />
+        <AirConditionCard {...visibilityCard} />
+        <SunRiseSetCard {...sunsetCard} />
       </div>
     </div>
   );
-}
+}
