@@ -4,9 +4,10 @@
   gap: 24px;
   padding: 24px;
   border-radius: 24px;
-  background: rgba(30, 30, 30, 0.75); /* same RGB as --color-bg-card, with the Figma-specified 0.75 opacity */
+  background: var(--color-bg-card);
   width: 100%;
   box-sizing: border-box;
+  flex-wrap: nowrap;
 }
 
 .th-title {
@@ -20,7 +21,7 @@
 
 .th-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1.4fr;
   gap: 18px;
 }
 

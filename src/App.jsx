@@ -6,7 +6,6 @@ import CurrentWeather from "./components/CurrentWeather/CurrentWeather.jsx";
 import OtherCountries from "./components/OtherCountries/OtherCountries.jsx";
 import TodaysHighlight from "./components/TodaysHighlight/TodaysHighlight.jsx";
 import FiveDayForecast from "./components/FiveDayForecast/FiveDayForecast.jsx";
-import HourlyForecast from "./components/HourlyForecast/HourlyForecast.jsx";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner.jsx";
 
 // Import backgrounds
@@ -43,7 +42,6 @@ export default function App() {
 
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
-  const [hourly, setHourly] = useState([]);
   const [highlights, setHighlights] = useState(null);
   const [bgType, setBgType] = useState("rainy");
   
@@ -53,11 +51,42 @@ export default function App() {
   // Search history state (Recent Searches)
   const [recentSearches, setRecentSearches] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("recentSearches")) || [];
+      return JSON.parse(localStorage.getItem("recentSearchesWeather")) || [];
     } catch {
       return [];
     }
   });
+
+  const fetchCitiesWeather = async (citiesList) => {
+    const apiKey = import.meta.env.VITE_API_KEY;
+    if (!apiKey) return [];
+
+    const promises = citiesList.map(async (cityName) => {
+      try {
+        const res = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cityName)}&appid=${apiKey}&units=metric`
+        );
+        if (!res.ok) throw new Error("Fetch failed");
+        const data = await res.json();
+        return {
+          id: data.name.toLowerCase() + "-" + data.sys.country.toLowerCase(),
+          city: data.name,
+          country: data.sys.country,
+          description: data.weather[0].main,
+          tempHigh: data.main.temp_max,
+          tempLow: data.main.temp_min,
+          icon: mapWeatherIcon(data.weather[0].main, data.weather[0].icon),
+          iconAlt: data.weather[0].description,
+        };
+      } catch (err) {
+        console.error("Error fetching city weather:", cityName, err);
+        return null;
+      }
+    });
+
+    const results = await Promise.all(promises);
+    return results.filter(Boolean);
+  };
 
   const fetchWeatherData = async (cityQuery, lat = null, lon = null) => {
     const apiKey = import.meta.env.VITE_API_KEY;
@@ -161,13 +190,7 @@ export default function App() {
         sunset: formatLocalTime(currentData.sys.sunset, timezoneOffset).timeStr,
       };
 
-      // Process Hourly (First 8 entries in forecast list represent next 24h in 3h steps)
-      const hourlyList = forecastData.list.slice(0, 8).map(item => ({
-        time: formatHour(item.dt, timezoneOffset),
-        icon: mapWeatherIcon(item.weather[0].main, item.weather[0].icon),
-        condition: item.weather[0].main,
-        temp: item.main.temp
-      }));
+
 
       // Process 5-Day Forecast by grouping 3-hourly entries by date
       const daysMap = {};
@@ -208,7 +231,6 @@ export default function App() {
 
       setWeather(processedWeather);
       setHighlights(processedHighlights);
-      setHourly(hourlyList);
       setForecast(processedForecast);
 
       // Save last searched city
@@ -216,10 +238,20 @@ export default function App() {
 
       // Update recent searches
       setRecentSearches(prev => {
-        const cleanedName = currentData.name;
-        const filtered = prev.filter(c => c.toLowerCase() !== cleanedName.toLowerCase());
-        const updated = [cleanedName, ...filtered].slice(0, 5);
-        localStorage.setItem("recentSearches", JSON.stringify(updated));
+        const cityWeatherInfo = {
+          id: currentData.name.toLowerCase() + "-" + currentData.sys.country.toLowerCase(),
+          city: currentData.name,
+          country: currentData.sys.country,
+          description: currentData.weather[0].main,
+          tempHigh: currentData.main.temp_max,
+          tempLow: currentData.main.temp_min,
+          icon: mapWeatherIcon(mainCond, currentData.weather[0].icon),
+          iconAlt: currentData.weather[0].description,
+        };
+
+        const filtered = prev.filter(c => c.city.toLowerCase() !== cityWeatherInfo.city.toLowerCase());
+        const updated = [cityWeatherInfo, ...filtered].slice(0, 5);
+        localStorage.setItem("recentSearchesWeather", JSON.stringify(updated));
         return updated;
       });
 
@@ -242,10 +274,36 @@ export default function App() {
     document.body.style.backgroundImage = `url(${url})`;
   }, [bgType]);
 
-  // Initial load: Geolocation lookup, falling back to localStorage last city or Dhaka
+  // Initial load: Geolocation lookup, falling back to localStorage last city or Dhaka, plus recent searches refresh
   useEffect(() => {
     const initializeWeather = async () => {
       const lastCity = localStorage.getItem("lastCity") || "Dhaka";
+
+      // Load recent searches
+      let savedRecent = [];
+      try {
+        savedRecent = JSON.parse(localStorage.getItem("recentSearchesWeather")) || [];
+      } catch {
+        savedRecent = [];
+      }
+
+      if (savedRecent.length === 0) {
+        // First load: pre-populate with 2 default locations: Canberra, Tokyo
+        const defaults = ["Canberra", "Tokyo"];
+        const defaultWeather = await fetchCitiesWeather(defaults);
+        if (defaultWeather.length > 0) {
+          setRecentSearches(defaultWeather);
+          localStorage.setItem("recentSearchesWeather", JSON.stringify(defaultWeather));
+        }
+      } else {
+        // Refresh weather data for cached cities
+        const cityNames = savedRecent.map(c => c.city);
+        const refreshedWeather = await fetchCitiesWeather(cityNames);
+        if (refreshedWeather.length > 0) {
+          setRecentSearches(refreshedWeather);
+          localStorage.setItem("recentSearchesWeather", JSON.stringify(refreshedWeather));
+        }
+      }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -293,10 +351,7 @@ export default function App() {
     tempMin: unit === "F" ? cToF(day.tempMin) : day.tempMin,
   }));
 
-  const displayedHourly = hourly.map(hour => ({
-    ...hour,
-    temp: unit === "F" ? cToF(hour.temp) : hour.temp,
-  }));
+
 
   return (
     <div className="app">
@@ -315,24 +370,6 @@ export default function App() {
           />
         </div>
 
-        {/* Recent searches history pills */}
-        {recentSearches.length > 0 && (
-          <div className="recent-searches">
-            <span className="recent-searches__title">Recent Searches:</span>
-            <div className="recent-searches__list">
-              {recentSearches.map((city, idx) => (
-                <button
-                  key={idx}
-                  className="recent-search-pill"
-                  onClick={() => handleSearch(city)}
-                  disabled={loading}
-                >
-                  {city}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
 
         {error && (
           <div className="error-card fade-in">
@@ -357,11 +394,15 @@ export default function App() {
                   unit={unit}
                   onUnitToggle={handleUnitToggle}
                 />
-                <OtherCountries unit={unit} />
+                <OtherCountries
+                  unit={unit}
+                  recentSearches={recentSearches}
+                  onSearch={handleSearch}
+                  activeCity={displayedWeather?.city}
+                />
               </div>
               <div className="dashboard-col dashboard-col--right fade-in">
                 <TodaysHighlight highlights={highlights} />
-                <HourlyForecast hourlyData={displayedHourly} unit={unit} />
                 <FiveDayForecast forecastData={displayedForecast} unit={unit} />
               </div>
             </>

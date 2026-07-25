@@ -20,7 +20,7 @@ export default function Sidebar() {
   return (
     <>
       <button
-        className="sidebar-trigger"
+        className={`sidebar-trigger ${isOpen ? "is-hidden" : ""}`}
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
         onClick={toggleSidebar}

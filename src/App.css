@@ -97,52 +97,7 @@
   }
 }
 
-/* Recent Searches */
-.recent-searches {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
 
-.recent-searches__title {
-  color: var(--color-text-secondary);
-  font-family: var(--font-main);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.recent-searches__list {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.recent-search-pill {
-  background: var(--color-bg-item);
-  color: var(--color-text-primary);
-  border: none;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-family: var(--font-main);
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
-}
-
-.recent-search-pill:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.recent-search-pill:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-[data-theme="light"] .recent-search-pill:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.05);
-}
 
 /* Spinner & Overlay */
 .spinner-container {

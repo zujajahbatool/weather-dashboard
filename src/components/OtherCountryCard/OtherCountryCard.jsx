@@ -1,8 +1,19 @@
 import "./OtherCountryCard.css";
 
-export default function OtherCountryCard({ country, city, description, tempHigh, tempLow, icon, iconAlt }) {
+export default function OtherCountryCard({ country, city, description, tempHigh, tempLow, icon, iconAlt, onClick }) {
   return (
-    <div className="occ-card">
+    <div
+      className="occ-card"
+      onClick={onClick}
+      style={{ cursor: onClick ? "pointer" : "default" }}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={(e) => {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
+          onClick();
+        }
+      }}
+    >
       <div className="occ-info">
         <p className="occ-country">{country}</p>
         <p className="occ-city">{city}</p>

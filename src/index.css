@@ -6,8 +6,8 @@
 }
 
 :root {
-  --color-bg-card: rgba(30, 30, 30, 0.75);
-  --color-bg-item: rgba(54, 54, 54, 1);
+  --color-bg-card: rgba(30, 30, 30, 0.801);
+  --color-bg-item: rgb(41, 40, 40);
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #B9B9B9;  /* black-100 */
   --color-text-displaycard: #272727;
@@ -56,4 +56,15 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   transition: background-image 0.5s ease-in-out;
+}
+
+/* Invert white utility icons in light mode for contrast */
+[data-theme="light"] .sidebar-trigger img,
+[data-theme="light"] .sidebar-icon img,
+[data-theme="light"] #search-icon,
+[data-theme="light"] .cw-location__icon,
+[data-theme="light"] .cw-unit__arrow img,
+[data-theme="light"] .oc-seeall__arrow,
+[data-theme="light"] .ac-icon {
+  filter: invert(0.85);
 }
