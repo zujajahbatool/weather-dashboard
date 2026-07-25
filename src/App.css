@@ -3,13 +3,17 @@
   display: flex;
   gap: 24px;
   padding: 32px;
-  overflow: hidden;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .app-main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* Prevents flex items from overflowing their container */
 }
 
 .app-topbar {
@@ -17,6 +21,8 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .app-greeting-block {
@@ -45,6 +51,7 @@
   display: flex;
   flex-wrap: wrap;
   flex: 1;
+  gap: 24px;
 }
 
 .dashboard-col {
@@ -55,6 +62,37 @@
   min-width: 300px;
 }
 
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dashboard-col {
+    width: 100%;
+    max-width: 664px;
+  }
+  .cw-card, .oc-card {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .occ-card {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .app {
+    padding: 24px;
+    gap: 20px;
+  }
+  .app-topbar {
+    margin-bottom: 24px;
+  }
+}
+
 @media (max-width: 480px) {
-  .app { padding: 16px; gap: 16px; }
+  .app {
+    padding: 16px;
+    gap: 16px;
+  }
 }

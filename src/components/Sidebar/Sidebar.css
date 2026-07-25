@@ -8,14 +8,26 @@
   align-items: center;
   padding: 24px 0;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.sidebar-top {
+.sidebar-top,
+.sidebar-bottom {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sidebar-top {
   gap: 16px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  gap: 12px;
 }
 
 .sidebar-nav {
@@ -56,10 +68,98 @@
   background: linear-gradient(90deg, #1E1E1E 0%, #4A4949 48%, #1E1E1E 100%);
 }
 
-.sidebar-divider--bottom {
-  margin-top: 12px;
+.sidebar-divider--top {
+  margin-top: 0;
 }
 
-.sidebar-icon--bottom {
-  margin-top: auto;
+.sidebar-divider--bottom {
+  margin-top: 0;
+}
+
+.sidebar-trigger {
+  display: none;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-bg-card);
+    position: fixed;
+    left: 16px;
+    top: 16px;
+    z-index: 12;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+  }
+
+  .sidebar-trigger img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 16px;
+    top: 16px;
+    bottom: 16px;
+    width: 84px;
+    transform: translateX(calc(-100% - 20px));
+    transition: transform 0.25s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.34);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 5;
+  }
+
+  .sidebar-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .app-greeting-block {
+    padding-left: 56px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 12px;
+  }
+
+  .sidebar-trigger {
+    left: 12px;
+    top: 12px;
+  }
+
+  .sidebar {
+    left: 12px;
+    top: 12px;
+    bottom: 12px;
+  }
+
+  .app-greeting-block {
+    padding-left: 48px;
+  }
 }

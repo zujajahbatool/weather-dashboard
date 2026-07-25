@@ -26,16 +26,12 @@ export default function TodaysHighlight() {
     <div className="th-card">
       <h2 className="th-title">Today's Highlight</h2>
       <div className="th-grid">
-        <div className="th-row">
-          <AirConditionCard {...airConditions[0]} />
-          <AirConditionCard {...airConditions[1]} />
-          <SunRiseSetCard {...sunTimes[0]} />
-        </div>
-        <div className="th-row">
-          <AirConditionCard {...airConditions[2]} />
-          <AirConditionCard {...airConditions[3]} />
-          <SunRiseSetCard {...sunTimes[1]} />
-        </div>
+        <AirConditionCard {...airConditions[0]} />
+        <AirConditionCard {...airConditions[1]} />
+        <SunRiseSetCard {...sunTimes[0]} />
+        <AirConditionCard {...airConditions[2]} />
+        <AirConditionCard {...airConditions[3]} />
+        <SunRiseSetCard {...sunTimes[1]} />
       </div>
     </div>
   );

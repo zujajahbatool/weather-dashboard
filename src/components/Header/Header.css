@@ -1,18 +1,21 @@
 .header-bar {
   display: flex;
-  justify-content: space-between;
-  width: fit-content;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
   border-radius: 34px;
-  padding-left: 16px;
   gap: 8px;
 }
 
 .search-pill {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 86px 12px 24px;
-  width: 333px;
+  gap: 12px;
+  padding: 12px 16px 12px 20px;
+  width: 100%;
+  max-width: 333px;
+  flex: 1;
   height: 56px;
   box-sizing: border-box;
   border-radius: 36px;
@@ -64,6 +67,7 @@
   gap: 8px;
   margin-left: 10px;
   background-color: #1e1e1e;
+  flex-shrink: 0;
 }
 
 #light-theme {
@@ -84,12 +88,8 @@
   gap: 16px;
 }
 
-.search-pill {
-  width: 333px;
-  max-width: 100%;
-}
-
 @media (max-width: 480px) {
-  .search-pill { width: 100%; }
+  .header-bar { max-width: 100%; }
+  .search-pill { max-width: 100%; }
   .theme-toggle { margin-left: 0; }
 }
