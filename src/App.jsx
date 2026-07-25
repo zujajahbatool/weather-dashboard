@@ -244,22 +244,26 @@ export default function App() {
 
   // Initial load: Geolocation lookup, falling back to localStorage last city or Dhaka
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          fetchWeatherData("", latitude, longitude);
-        },
-        () => {
-          const lastCity = localStorage.getItem("lastCity") || "Dhaka";
-          fetchWeatherData(lastCity);
-        },
-        { timeout: 8000 }
-      );
-    } else {
+    const initializeWeather = async () => {
       const lastCity = localStorage.getItem("lastCity") || "Dhaka";
-      fetchWeatherData(lastCity);
-    }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            fetchWeatherData("", latitude, longitude);
+          },
+          () => {
+            fetchWeatherData(lastCity);
+          },
+          { timeout: 8000 }
+        );
+      } else {
+        await fetchWeatherData(lastCity);
+      }
+    };
+
+    initializeWeather();
   }, []);
 
   const handleSearch = (query) => {
