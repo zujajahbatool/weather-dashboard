@@ -1,6 +1,6 @@
 import './DayForecastCard.css';
 
-function DayForecastCard({ day, icon, iconAlt, temp }) {
+export default function DayForecastCard({ day, icon, iconAlt, tempMax, tempMin, unit = "C" }) {
   return (
     <div className="dfc-card">
       <div className="dfc-day-wrap">
@@ -10,9 +10,9 @@ function DayForecastCard({ day, icon, iconAlt, temp }) {
       <div className="dfc-icon-frame">
         <img src={icon} alt={iconAlt} className="dfc-icon" />
       </div>
-      <span className="dfc-temp">{temp}°C</span>
+      <span className="dfc-temp" style={{ fontSize: '14px', textAlign: 'center' }}>
+        {Math.round(tempMax)}&deg;/{Math.round(tempMin)}&deg;{unit}
+      </span>
     </div>
   );
 }
-
-export default DayForecastCard;
