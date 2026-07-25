@@ -34,6 +34,97 @@ const bgMap = {
   fog: fogBg,
 };
 
+const getMockWeather = () => ({
+  city: "Dhaka",
+  country: "Bangladesh",
+  temp: 28,
+  tempMin: 24,
+  tempMax: 28,
+  day: "Sunday",
+  date: "04 Aug,2024",
+  icon: mapWeatherIcon("Rain"),
+  condition: "Heavy Rain",
+  feelsLike: 31,
+});
+
+const getMockHighlights = () => ({
+  windSpeed: 7.90,
+  currentTime: "9:00 AM",
+  humidity: 85,
+  humidityDesc: "Humidity is good",
+  uvIndex: 4,
+  uvDesc: "Moderate UV",
+  visibility: 5,
+  sunrise: "4:50 AM",
+  sunset: "6:45 PM",
+});
+
+const getMockForecast = () => [
+  {
+    id: "fc-1",
+    day: "Today",
+    icon: mapWeatherIcon("Rain"),
+    condition: "Heavy Rain",
+    tempMax: 28,
+    tempMin: 24,
+  },
+  {
+    id: "fc-2",
+    day: "Mon",
+    icon: mapWeatherIcon("Cloud", "02d"),
+    condition: "Partly Sunny",
+    tempMax: 31,
+    tempMin: 25,
+  },
+  {
+    id: "fc-3",
+    day: "Tue",
+    icon: mapWeatherIcon("Rain"),
+    condition: "Heavy Rain",
+    tempMax: 27,
+    tempMin: 22,
+  },
+  {
+    id: "fc-4",
+    day: "Wed",
+    icon: mapWeatherIcon("Thunderstorm"),
+    condition: "Stormy",
+    tempMax: 29,
+    tempMin: 23,
+  },
+  {
+    id: "fc-5",
+    day: "Thu",
+    icon: mapWeatherIcon("Cloud", "02d"),
+    condition: "Partly Sunny",
+    tempMax: 32,
+    tempMin: 26,
+  },
+];
+
+const getMockRecentSearches = () => [
+  {
+    id: "canberra-australia",
+    city: "Canberra",
+    country: "Australia",
+    description: "Sunny",
+    tempHigh: 32,
+    tempLow: 24,
+    icon: mapWeatherIcon("Clear"),
+    iconAlt: "sunny weather",
+  },
+  {
+    id: "tokyo-japan",
+    city: "Tokyo",
+    country: "Japan",
+    description: "Mostly Sunny",
+    tempHigh: 30,
+    tempLow: 19,
+    icon: mapWeatherIcon("Cloud", "02d"),
+    iconAlt: "mostly sunny weather",
+  },
+];
+
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
   const [unit, setUnit] = useState("C");
@@ -91,7 +182,7 @@ export default function App() {
   const fetchWeatherData = async (cityQuery, lat = null, lon = null) => {
     const apiKey = import.meta.env.VITE_API_KEY;
     if (!apiKey) {
-      setError("API Key is missing. Please check .env.local.");
+      setError("API Key is missing. Please set VITE_API_KEY in .env.local to search other locations.");
       setLoading(false);
       return;
     }
@@ -277,6 +368,19 @@ export default function App() {
   // Initial load: Geolocation lookup, falling back to localStorage last city or Dhaka, plus recent searches refresh
   useEffect(() => {
     const initializeWeather = async () => {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      if (!apiKey) {
+        // Load mock weather data to match Figma when API key is missing
+        setWeather(getMockWeather());
+        setHighlights(getMockHighlights());
+        setForecast(getMockForecast());
+        setRecentSearches(getMockRecentSearches());
+        setGreeting("Good Morning");
+        setBgType("rainy");
+        setLoading(false);
+        return;
+      }
+
       const lastCity = localStorage.getItem("lastCity") || "Dhaka";
 
       // Load recent searches
