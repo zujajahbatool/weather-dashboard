@@ -149,7 +149,7 @@ export default function App() {
   });
 
   const fetchCitiesWeather = async (citiesList) => {
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     if (!apiKey) return [];
 
     const promises = citiesList.map(async (cityName) => {
@@ -180,9 +180,9 @@ export default function App() {
   };
 
   const fetchWeatherData = async (cityQuery, lat = null, lon = null) => {
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     if (!apiKey) {
-      setError("API Key is missing. Please set VITE_API_KEY in .env.local to search other locations.");
+      setError("API Key is missing. Please set VITE_WEATHER_API_KEY in .env.local to search other locations.");
       setLoading(false);
       return;
     }
@@ -368,7 +368,7 @@ export default function App() {
   // Initial load: Geolocation lookup, falling back to localStorage last city or Dhaka, plus recent searches refresh
   useEffect(() => {
     const initializeWeather = async () => {
-      const apiKey = import.meta.env.VITE_API_KEY;
+      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
       if (!apiKey) {
         // Load mock weather data to match Figma when API key is missing
         setWeather(getMockWeather());
