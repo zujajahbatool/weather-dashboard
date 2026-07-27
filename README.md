@@ -85,7 +85,7 @@ weather-dashboard/
 
    Then add your OpenWeather API key:
    ```
-   VITE_API_KEY="your-api-key-here"
+   VITE_WEATHER_API_KEY="your-api-key-here"
    ```
 
 4. Start the development server
