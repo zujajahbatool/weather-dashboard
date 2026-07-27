@@ -46,6 +46,9 @@
   font-style: Regular;
   line-height: 100%;
   letter-spacing: 0%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-input::placeholder {
@@ -151,6 +154,13 @@
   .header-bar { max-width: 100%; }
   .search-pill { max-width: 100%; }
   .theme-toggle { margin-left: 0; }
+  
+  .search-input {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /* Light theme overrides for search pill and theme toggle */
